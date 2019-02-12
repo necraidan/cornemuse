@@ -1,0 +1,11 @@
+{
+  "name": "cornemuse-server",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "necraidan (benjamin.auzanneau.tm@gmail.com)",
+  "license": "ISC"
+}
