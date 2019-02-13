@@ -2,10 +2,34 @@
   "name": "cornemuse-server",
   "version": "0.1.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/app.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node dist/app.js",
+    "test": "concurrently \"npm:watch-ts\" \"jest --watchAll\"",
+    "coverage": "jest --coverage",
+    "watch": "concurrently \"npm:watch-ts\" \"npm:watch-server\"",
+    "watch-ts": "tsc --sourceMap -w",
+    "watch-server": "nodemon dist/app.js",
+    "copy-all": "npm run copy-music && npm run copy-public",
+    "copy-music": "copyfiles -E -u 2 src/music/**/*.mp3 dist/music",
+    "copy-public": "copyfiles -E -u 2 src/public/**/* dist/public",
+    "build": "tsc --sourceMap && npm run copy-all",
+    "format": "prettier --config ./.prettierrc --write src/**/*"
   },
   "author": "necraidan (benjamin.auzanneau.tm@gmail.com)",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4"
+  },
+  "devDependencies": {
+    "@types/express": "^4.16.1",
+    "@types/node": "^11.9.3",
+    "concurrently": "^4.1.0",
+    "copyfiles": "^2.1.0",
+    "jest": "^24.1.0",
+    "nodemon": "^1.18.10",
+    "prettier": "^1.16.4",
+    "tslint": "^5.12.1",
+    "typescript": "^3.3.3"
+  }
 }
