@@ -1,0 +1,22 @@
+body {
+  display: grid;
+  min-height: 100%;
+  grid-template-areas:
+    'sidebar  content'
+    'footer   footer';
+}
+
+.main {
+  grid-area: content;
+  background-color: blueviolet;
+}
+
+.footer {
+  grid-area: footer;
+  background-color: yellowgreen;
+}
+
+.aside {
+  grid-area: sidebar;
+  background-color: red;
+}
