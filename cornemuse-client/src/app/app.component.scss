@@ -1,0 +1,27 @@
+:host {
+  display: grid;
+  grid-template-areas:
+    'nav-bar main-view'
+    'player  player';
+
+  grid-template-columns: 200px 1fr;
+  grid-template-rows: 1fr 75px;
+
+  justify-items: stretch;
+  align-items: stretch;
+
+  height: 100vh;
+
+  nav-bar {
+    grid-area: nav-bar;
+    background-color: darkslategrey;
+  }
+  main-view {
+    grid-area: main-view;
+    background-color: rebeccapurple;
+  }
+  player {
+    grid-area: player;
+    background-color: cornflowerblue;
+  }
+}
