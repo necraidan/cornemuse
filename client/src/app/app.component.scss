@@ -23,5 +23,9 @@
   player {
     grid-area: player;
     background-color: cornflowerblue;
+    display: grid;
+    grid-template: 1fr / 0.5fr 0.5fr 1fr 5fr 1fr;
+    align-items: center;
+    justify-items: center;
   }
 }

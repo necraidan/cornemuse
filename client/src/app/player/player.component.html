@@ -3,7 +3,7 @@
   <code>audio</code> element.
 </audio> -->
 <button (click)="play()">Play</button>
+<button (click)="pause()">Pause</button>
 <span>{{ currentTime | secondToMinute }}</span>
 <progress #progress max="100" (click)="click($event)"></progress>
 <span>{{ duration | secondToMinute }}</span>
-<button (click)="pause()">Pause</button>
