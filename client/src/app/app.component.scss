@@ -2,10 +2,10 @@
   display: grid;
   grid-template-areas:
     'nav-bar main-view'
-    'player  player';
+    'bottom-bar  bottom-bar';
 
   grid-template-columns: 200px 1fr;
-  grid-template-rows: 1fr 75px;
+  grid-template-rows: 1fr 100px;
 
   justify-items: stretch;
   align-items: stretch;
@@ -20,12 +20,8 @@
     grid-area: main-view;
     background-color: rebeccapurple;
   }
-  player {
-    grid-area: player;
+  bottom-bar {
+    grid-area: bottom-bar;
     background-color: cornflowerblue;
-    display: grid;
-    grid-template: 1fr / 0.5fr 0.5fr 1fr 5fr 1fr;
-    align-items: center;
-    justify-items: center;
   }
 }
