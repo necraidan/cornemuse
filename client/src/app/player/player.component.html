@@ -1,4 +1,9 @@
-<audio #audio controls src="assets/music/Jazz-Mezzo.mp3">
+<!-- <audio #audio controls src="assets/music/Jazz-Mezzo.mp3">
   Your browser does not support the
   <code>audio</code> element.
-</audio>
+</audio> -->
+<button (click)="play()">Play</button>
+<span>{{ currentTime | secondToMinute }}</span>
+<progress #progress max="100" (click)="click($event)"></progress>
+<span>{{ duration | secondToMinute }}</span>
+<button (click)="pause()">Pause</button>
