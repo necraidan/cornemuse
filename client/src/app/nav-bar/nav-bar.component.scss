@@ -1,11 +1,23 @@
-.header {
-}
+:host {
+  background-color: #211b4e;
 
-.links {
-  display: grid;
-  a {
-    text-decoration: none;
-    color: white;
-    font-size: 2em;
+  .header {
+  }
+
+  .links {
+    display: grid;
+    a {
+      text-decoration: none;
+      color: white;
+      font-size: 2em;
+
+      &:hover {
+        background-color: #19143b;
+      }
+
+      &.active {
+        background-color: rgba(87, 91, 222, 0.4);
+      }
+    }
   }
 }
