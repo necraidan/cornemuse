@@ -1,7 +1,12 @@
 :host {
   background-color: #211b4e;
+  color: white;
 
   .header {
+    padding: 10px;
+    h1 {
+      font-weight: 900;
+    }
   }
 
   .links {
@@ -9,7 +14,19 @@
     a {
       text-decoration: none;
       color: white;
-      font-size: 2em;
+      font-size: 1.5rem;
+      line-height: 2em;
+      padding: 10px;
+
+      span.text {
+        font-size: 1.15rem;
+        vertical-align: middle;
+        margin-left: 5px;
+      }
+
+      span.jam {
+        vertical-align: middle;
+      }
 
       &:hover {
         background-color: #19143b;
