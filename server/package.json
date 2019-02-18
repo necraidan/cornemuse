@@ -10,18 +10,18 @@
     "watch": "concurrently \"npm:watch-ts\" \"npm:watch-server\"",
     "watch-ts": "tsc --sourceMap -w",
     "watch-server": "nodemon dist/app.js",
-    "copy-all": "npm run copy-music && npm run copy-public",
-    "copy-music": "copyfiles -E -u 2 src/music/**/*.mp3 dist/music",
-    "copy-public": "copyfiles -E -u 2 src/public/**/* dist/public",
-    "build": "tsc --sourceMap && npm run copy-all",
+    "build": "tsc --sourceMap",
     "format": "prettier --config ./.prettierrc --write src/**/*"
   },
   "author": "necraidan (benjamin.auzanneau.tm@gmail.com)",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.18.3",
+    "compression": "^1.7.3",
     "express": "^4.16.4"
   },
   "devDependencies": {
+    "@types/compression": "0.0.36",
     "@types/express": "^4.16.1",
     "@types/node": "^11.9.3",
     "concurrently": "^4.1.0",

@@ -1,51 +1,35 @@
+import bodyParser from 'body-parser';
+import compression from 'compression';
 import express from 'express';
-import fs from 'fs';
+import { Server } from 'http';
+import { AddressInfo } from 'net';
+import { Config } from './config/config';
+import { musicRouter } from './routes/music.route';
 
 // Create Express server
 const app = express();
 
-app.use('/public', express.static(__dirname + '/public'));
+// Configuration
+app.use(compression());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/', function(req, res) {
-  return res.redirect('/public/home.html');
-});
+// Routes
+app.use('/music', musicRouter);
 
-// define a route music it creates readstream to the requested file and pipes the output to response
-app.get('/music', function(req, res) {
-  let fileId = req.query.id;
-  let file = __dirname + '/music/' + fileId;
-  fs.exists(file, function(exists) {
-    if (exists) {
-      let rstream = fs.createReadStream(file);
-      rstream.pipe(res);
-      console.log(file);
-      console.log('found !');
-    } else {
-      res.send('Its a 404');
-      res.end();
-    }
+//app.use('/public', express.static(__dirname + '/public'));
+
+let port = Config.app.port;
+
+//start app on port 3003 and log the message to console
+try {
+  let server: Server = app.listen(port, () => {
+    const addressInfo = server.address() as AddressInfo;
+    process.env.NODE_ENV && console.info(`Node Env: ${process.env.NODE_ENV}`);
+    console.info(`Serveur running on: ${addressInfo.address}:${addressInfo.port}`);
   });
-});
-
-app.get('/download', function(req, res) {
-  let fileId = req.query.id;
-  let file = __dirname + '/music/' + fileId;
-  fs.exists(file, function(exists) {
-    if (exists) {
-      res.setHeader('Content-disposition', 'attachment; filename=' + fileId);
-      res.setHeader('Content-Type', 'application/audio/mpeg3');
-      let rstream = fs.createReadStream(file);
-      rstream.pipe(res);
-    } else {
-      res.send('Its a 404');
-      res.end();
-    }
-  });
-});
-
-// start app on port 3003 and log the message to console
-app.listen(3003, function() {
-  console.log('App listening on port 3003 !');
-});
+} catch (e) {
+  console.error(e);
+}
 
 export default app;
