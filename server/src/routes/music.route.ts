@@ -7,7 +7,27 @@ export const musicRouter = express.Router();
 /**
  * Get list of musics
  */
-musicRouter.get('/', async (req, res, next) => {});
+
+musicRouter.get('/', async (req, res, next) => {
+  let folder = path.join(__dirname, '..', 'music/');
+
+  fs.readdir(folder, (err, files) => {
+    console.log(err);
+    console.log(files);
+    let fileInfo: any[] = [];
+
+    files.forEach(file => {
+      // TODO: https://www.npmjs.com/package/music-metadata
+      fileInfo.push(fs.statSync(path.join(folder, file)));
+    });
+
+    if (err) {
+      res.send(err);
+    } else {
+      res.send({ files, fileInfo });
+    }
+  });
+});
 
 /**
  * Get music
