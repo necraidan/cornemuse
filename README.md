@@ -8,7 +8,7 @@ TODO Client :
 
 - Add localstorage handler for server url.
 - Add notification
-- Add play a list of musics
+- Get a list of music
 
 TODO Server :
 
