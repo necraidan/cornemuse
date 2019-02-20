@@ -8,13 +8,18 @@ interface Configuration {
 export interface Endpoints {
   [index: string]: {
     target: string;
-    headers: {};
+    headers?: {};
   };
 }
 
 let config = {
   app: {
     port: 7777
+  },
+  endpoints: {
+    musicFolder: {
+      target: __dirname + '../../../music'
+    }
   }
 };
 
