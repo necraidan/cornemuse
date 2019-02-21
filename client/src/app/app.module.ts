@@ -12,6 +12,7 @@ import { MainViewComponent } from './main-view/main-view.component';
 import { SearchComponent } from './main-view/search/search.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { SecondToMinutePipe } from './shared/pipes/second-to-minute.pipe';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { SecondToMinutePipe } from './shared/pipes/second-to-minute.pipe';
     MusicCoverComponent,
     ChromecastBlockComponent
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, AppRoutingModule, SharedModule],
   providers: [],
   bootstrap: [AppComponent]
 })

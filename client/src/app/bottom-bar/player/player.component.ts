@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { fromEvent } from 'rxjs';
+import { StateService } from 'src/app/shared/services/state.service';
 
 @Component({
   selector: 'player',
@@ -17,20 +18,25 @@ export class PlayerComponent implements OnInit {
   @ViewChild('progress')
   progress: ElementRef;
 
-  constructor() {}
+  constructor(private stateService: StateService) {}
 
   ngOnInit() {
-    this.audioElement = new Audio('assets/music/Jazz-Mezzo.mp3');
-    console.log(this.audioElement);
+    this.stateService.musicPlaying.subscribe((elt: any) => {
+      if (elt) {
+        this.audioElement = new Audio('http://localhost:4200/api/music/' + elt);
 
-    fromEvent(this.audioElement, 'timeupdate').subscribe((res: Event) => {
-      this.currentTime = this.audioElement.currentTime;
-      this.progress.nativeElement.value = (this.audioElement.currentTime * 100) / this.audioElement.duration;
-    });
+        fromEvent(this.audioElement, 'canplaythrough').subscribe((res: Event) => {
+          this.currentTime = this.audioElement.currentTime;
+          this.duration = this.audioElement.duration;
 
-    fromEvent(this.audioElement, 'canplaythrough').subscribe((res: Event) => {
-      this.currentTime = this.audioElement.currentTime;
-      this.duration = this.audioElement.duration;
+          fromEvent(this.audioElement, 'timeupdate').subscribe((res: Event) => {
+            this.currentTime = this.audioElement.currentTime;
+            this.progress.nativeElement.value = (this.audioElement.currentTime * 100) / this.audioElement.duration;
+          });
+        });
+
+        console.log(this.audioElement);
+      }
     });
   }
 
