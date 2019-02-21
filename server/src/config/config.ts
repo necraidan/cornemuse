@@ -2,7 +2,7 @@ interface Configuration {
   app: {
     port: number;
   };
-  endpoints?: Endpoints;
+  endpoints: Endpoints;
 }
 
 export interface Endpoints {
@@ -18,7 +18,7 @@ let config = {
   },
   endpoints: {
     musicFolder: {
-      target: __dirname + '../../../music'
+      target: __dirname + '../../../../music'
     }
   }
 };

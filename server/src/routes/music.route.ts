@@ -1,6 +1,7 @@
 import express from 'express';
 import fs from 'fs';
 import path from 'path';
+import { Config } from '../config/config';
 
 export const musicRouter = express.Router();
 
@@ -9,7 +10,9 @@ export const musicRouter = express.Router();
  */
 
 musicRouter.get('/', async (req, res, next) => {
-  let folder = path.join(__dirname, '..', 'music/');
+  let folder = path.join(Config.endpoints.musicFolder.target);
+
+  console.log(folder);
 
   fs.readdir(folder, (err, files) => {
     console.log(err);
@@ -33,7 +36,7 @@ musicRouter.get('/', async (req, res, next) => {
  * Get music
  */
 musicRouter.get('/:musicId', async (req, res, next) => {
-  let file = path.join(__dirname, 'music', req.params.musicId);
+  let file = path.join(Config.endpoints.musicFolder.target, req.params.musicId);
 
   fs.exists(file, function(exists) {
     if (exists) {
