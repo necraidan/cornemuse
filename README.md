@@ -13,3 +13,4 @@ TODO Client :
 TODO Server :
 
 - List all musics
+- Log metadata
