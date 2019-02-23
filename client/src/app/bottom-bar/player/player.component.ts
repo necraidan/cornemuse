@@ -8,8 +8,8 @@ import { StateService } from 'src/app/shared/services/state.service';
   styleUrls: ['./player.component.scss']
 })
 export class PlayerComponent implements OnInit {
-  currentTime: number;
-  duration: number;
+  currentTime = 0;
+  duration = 0;
 
   // @ViewChild('audio')
   // audioElement: ElementRef;
@@ -27,17 +27,17 @@ export class PlayerComponent implements OnInit {
     this.stateService.musicPlaying.subscribe((elt: any) => {
       if (elt) {
         this.beforeNewMusic();
-        this.audioElement = new Audio('http://localhost:4200/api/music/' + elt);
+        this.audioElement = new Audio('http://localhost:4200/api/music/' + elt.name);
 
         this.canPlay = fromEvent(this.audioElement, 'canplaythrough').subscribe((res: Event) => {
           console.log('loaded !');
           this.currentTime = this.audioElement.currentTime;
-          this.duration = this.audioElement.duration;
+          this.duration = elt.duration;
         });
 
         this.timeUpdate = fromEvent(this.audioElement, 'timeupdate').subscribe((res: Event) => {
           this.currentTime = this.audioElement.currentTime;
-          this.progress.nativeElement.value = (this.audioElement.currentTime * 100) / this.audioElement.duration;
+          this.progress.nativeElement.value = (this.audioElement.currentTime * 100) / this.duration;
         });
       }
     });
@@ -48,7 +48,7 @@ export class PlayerComponent implements OnInit {
     const y = event.pageY - this.progress.nativeElement.offsetTop; // or e.offsetY
     const clickedValue = (x * this.progress.nativeElement.max) / this.progress.nativeElement.offsetWidth;
 
-    this.audioElement.currentTime = (this.audioElement.duration * clickedValue) / 100;
+    this.audioElement.currentTime = (this.duration * clickedValue) / 100;
   }
 
   play() {
@@ -66,5 +66,7 @@ export class PlayerComponent implements OnInit {
     this.timeUpdate && this.timeUpdate.unsubscribe();
     // tslint:disable-next-line: no-unused-expression
     this.audioElement && this.audioElement.pause();
+
+    this.progress.nativeElement.value = 0;
   }
 }

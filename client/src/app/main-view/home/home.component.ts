@@ -14,14 +14,12 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.apiClient.getMusicList().subscribe((elt: any) => {
       console.log(elt);
-      this.musics = elt.files.map(title => ({
-        title
-      }));
+      this.musics = elt;
     });
   }
 
-  play(title: string) {
-    console.log(title);
-    this.stateService.musicPlaying.next(title);
+  play(music: any) {
+    console.log(music);
+    this.stateService.musicPlaying.next(music);
   }
 }

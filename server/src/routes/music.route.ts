@@ -1,5 +1,6 @@
 import express from 'express';
 import fs from 'fs';
+import musicDuration from 'music-duration';
 import path from 'path';
 import { Config } from '../config/config';
 
@@ -14,20 +15,25 @@ musicRouter.get('/', async (req, res, next) => {
 
   console.log(folder);
 
-  fs.readdir(folder, (err, files) => {
+  fs.readdir(folder, async (err, files) => {
     console.log(err);
     console.log(files);
-    let fileInfo: any[] = [];
+    let filesInfo: any[] = [];
 
-    files.forEach(file => {
+    for (const file of files) {
+      let fileTemp = {
+        name: file,
+        metadata: fs.statSync(path.join(folder, file)),
+        duration: await musicDuration(path.join(folder, file))
+      };
       // TODO: https://www.npmjs.com/package/music-metadata
-      fileInfo.push(fs.statSync(path.join(folder, file)));
-    });
+      filesInfo.push(fileTemp);
+    }
 
     if (err) {
       res.send(err);
     } else {
-      res.send({ files, fileInfo });
+      res.send(filesInfo);
     }
   });
 });
