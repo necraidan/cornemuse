@@ -1,0 +1,14 @@
+:host {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+
+  .jam-rectangle {
+    margin-left: -1.5rem;
+  }
+
+  .jam-rss-feed {
+    font-size: 1.5rem;
+  }
+}

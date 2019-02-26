@@ -1,8 +1,10 @@
 :host {
   display: grid;
   grid-template: 1fr / 0.5fr 1fr 5fr 1fr;
+  grid-gap: 10px;
   align-items: center;
   justify-items: center;
+  font-size: 2rem;
 
   progress {
     color: #134800;
