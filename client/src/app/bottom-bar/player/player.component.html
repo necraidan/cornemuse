@@ -1,9 +1,5 @@
-<!-- <audio #audio controls src="assets/music/Jazz-Mezzo.mp3">
-  Your browser does not support the
-  <code>audio</code> element.
-</audio> -->
-<button (click)="play()">Play</button>
-<button (click)="pause()">Pause</button>
+<span *ngIf="!isPlaying" class="jam jam-play" (click)="play()"></span>
+<span *ngIf="isPlaying" class="jam jam-pause" (click)="pause()"></span>
 <span>{{ currentTime | secondToMinute }}</span>
 <progress #progress max="100" (click)="click($event)"></progress>
 <span>{{ duration | secondToMinute }}</span>

@@ -11,15 +11,16 @@ export class PlayerComponent implements OnInit {
   currentTime = 0;
   duration = 0;
 
-  // @ViewChild('audio')
-  // audioElement: ElementRef;
   audioElement: HTMLAudioElement;
 
   @ViewChild('progress')
   progress: ElementRef;
+
   // FIX: Types
   canPlay: any;
   timeUpdate: any;
+
+  isPlaying: boolean;
 
   constructor(private stateService: StateService) {}
 
@@ -53,10 +54,12 @@ export class PlayerComponent implements OnInit {
 
   play() {
     this.audioElement.play();
+    this.isPlaying = true;
   }
 
   pause() {
     this.audioElement.pause();
+    this.isPlaying = false;
   }
 
   beforeNewMusic() {
@@ -68,5 +71,6 @@ export class PlayerComponent implements OnInit {
     this.audioElement && this.audioElement.pause();
 
     this.progress.nativeElement.value = 0;
+    this.isPlaying = false;
   }
 }
