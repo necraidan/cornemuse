@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'music-cover',
@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MusicCoverComponent implements OnInit {
   constructor() {}
+
+  @Input()
+  isPlaying: boolean;
 
   ngOnInit() {}
 }

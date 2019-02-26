@@ -1,5 +1,6 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { fromEvent } from 'rxjs';
+import { PlayerState } from 'src/app/shared/models/player-state.model';
 import { StateService } from 'src/app/shared/services/state.service';
 
 @Component({
@@ -19,6 +20,9 @@ export class PlayerComponent implements OnInit {
   // FIX: Types
   canPlay: any;
   timeUpdate: any;
+
+  @Output()
+  playerState = new EventEmitter<PlayerState>();
 
   isPlaying: boolean;
 
@@ -55,11 +59,13 @@ export class PlayerComponent implements OnInit {
   play() {
     this.audioElement.play();
     this.isPlaying = true;
+    this.playerState.emit({ isPlaying: this.isPlaying });
   }
 
   pause() {
     this.audioElement.pause();
     this.isPlaying = false;
+    this.playerState.emit({ isPlaying: this.isPlaying });
   }
 
   beforeNewMusic() {

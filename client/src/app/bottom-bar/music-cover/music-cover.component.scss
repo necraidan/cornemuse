@@ -1,0 +1,19 @@
+:host {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  font-size: 4rem;
+
+  .playing {
+    animation: rotation 3s linear infinite;
+  }
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
