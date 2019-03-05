@@ -1,5 +1,5 @@
-<span *ngIf="!isPlaying" class="jam jam-play" (click)="play()"></span>
-<span *ngIf="isPlaying" class="jam jam-pause" (click)="pause()"></span>
+<span *ngIf="!isPlaying" class="jam jam-play action" (click)="play()"></span>
+<span *ngIf="isPlaying" class="jam jam-pause action" (click)="pause()"></span>
 <span>{{ currentTime | secondToMinute }}</span>
-<progress #progress max="100" (click)="click($event)"></progress>
+<progress #progress max="100" (click)="click($event)" class="action"></progress>
 <span>{{ duration | secondToMinute }}</span>
