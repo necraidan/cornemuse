@@ -1,3 +1,11 @@
-<div *ngFor="let music of musics">
-  <button (click)="play(music)">{{ music.name }}</button>
+<div class="tracklist">
+  <div *ngFor="let music of musics" class="track" (click)="put($event, music)">
+    <div class="action" (click)="put($event, music, true)"><span class="jam jam-play"></span></div>
+    <div>
+      <div>{{ music.name }}</div>
+      <div>Artiste · Album</div>
+    </div>
+    <div>···</div>
+    <div>{{ music.duration | secondToMinute }}</div>
+  </div>
 </div>

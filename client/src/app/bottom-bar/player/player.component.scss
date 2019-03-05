@@ -19,14 +19,14 @@
   }
 
   progress[value] {
-    background-color: yellow;
+    background-color: rgba(87, 91, 222, 0.4);
   }
   progress::-webkit-progress-value {
-    background: blue;
-    background-color: orange;
+    color: yellow;
+    background-color: rgba(87, 91, 222, 0.4);
   }
 
   progress::-moz-progress-bar {
-    background: blue;
+    background-color: rgba(87, 91, 222, 0.4);
   }
 }

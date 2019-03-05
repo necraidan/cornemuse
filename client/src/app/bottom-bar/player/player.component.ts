@@ -38,6 +38,9 @@ export class PlayerComponent implements OnInit {
           console.log('loaded !');
           this.currentTime = this.audioElement.currentTime;
           this.duration = elt.duration;
+
+          // tslint:disable-next-line: no-unused-expression
+          elt.startPlaying && this.play();
         });
 
         this.timeUpdate = fromEvent(this.audioElement, 'timeupdate').subscribe((res: Event) => {

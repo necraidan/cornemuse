@@ -18,8 +18,9 @@ export class LibraryComponent implements OnInit {
     });
   }
 
-  play(music: any) {
+  put(event: MouseEvent, music: any, startPlaying: boolean = false) {
     console.log(music);
-    this.stateService.musicPlaying.next(music);
+    event.stopPropagation();
+    this.stateService.musicPlaying.next({ ...music, startPlaying });
   }
 }
