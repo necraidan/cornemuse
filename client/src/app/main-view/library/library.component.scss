@@ -8,8 +8,22 @@
       grid-template: 1fr / 1fr 10fr 1fr 1fr;
       cursor: pointer;
 
+      &:hover {
+        background-color: #dedede;
+      }
+
       .action {
         font-size: 1.5rem;
+        align-self: center;
+        justify-self: center;
+      }
+
+      .menu {
+        align-self: center;
+        justify-self: center;
+      }
+
+      .time {
         align-self: center;
         justify-self: center;
       }
