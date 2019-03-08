@@ -23,4 +23,9 @@
   bottom-bar {
     grid-area: bottom-bar;
   }
+
+  @media screen and (max-width: 600px) {
+    grid-template: 1fr 1fr 0.2fr/ 1fr;
+    grid-template-areas: 'nav-bar' 'main-view' 'bottom-bar';
+  }
 }
