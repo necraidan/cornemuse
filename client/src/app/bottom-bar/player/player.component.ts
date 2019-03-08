@@ -3,6 +3,9 @@ import { fromEvent } from 'rxjs';
 import { PlayerState } from 'src/app/shared/models/player-state.model';
 import { StateService } from 'src/app/shared/services/state.service';
 
+/**
+ * FIX: When click on the end of the progress bar this.audioElement.currentTime = 0
+ */
 @Component({
   selector: 'player',
   templateUrl: './player.component.html',
@@ -46,6 +49,15 @@ export class PlayerComponent implements OnInit {
         this.timeUpdate = fromEvent(this.audioElement, 'timeupdate').subscribe((res: Event) => {
           this.currentTime = this.audioElement.currentTime;
           this.progress.nativeElement.value = (this.audioElement.currentTime * 100) / this.duration;
+
+          if (this.progress.nativeElement.value === 100) {
+            this.isPlaying = false;
+          }
+        });
+
+        const ended = fromEvent(this.audioElement, 'ended').subscribe((res: Event) => {
+          this.isPlaying = false;
+          this.pause();
         });
       }
     });
@@ -57,6 +69,8 @@ export class PlayerComponent implements OnInit {
     const clickedValue = (x * this.progress.nativeElement.max) / this.progress.nativeElement.offsetWidth;
 
     this.audioElement.currentTime = (this.duration * clickedValue) / 100;
+    console.log(clickedValue);
+    console.log(this.audioElement.currentTime);
   }
 
   play() {
