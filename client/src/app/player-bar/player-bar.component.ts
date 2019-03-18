@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { PlayerState } from '../shared/models/player-state.model';
 
 @Component({
-  selector: 'bottom-bar',
-  templateUrl: './bottom-bar.component.html',
-  styleUrls: ['./bottom-bar.component.scss']
+  selector: 'player-bar',
+  templateUrl: './player-bar.component.html',
+  styleUrls: ['./player-bar.component.scss']
 })
-export class BottomBarComponent implements OnInit {
+export class PlayerBarComponent implements OnInit {
   playerState: PlayerState = { isPlaying: false };
 
   constructor() {}

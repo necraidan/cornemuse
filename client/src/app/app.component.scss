@@ -2,7 +2,7 @@
   display: grid;
   grid-template-areas:
     'nav-bar main-view'
-    'bottom-bar  bottom-bar';
+    'player-bar  player-bar';
 
   grid-template-columns: 200px 1fr;
   grid-template-rows: 1fr 100px;
@@ -20,12 +20,12 @@
     grid-area: main-view;
   }
 
-  bottom-bar {
-    grid-area: bottom-bar;
+  player-bar {
+    grid-area: player-bar;
   }
 
   @media screen and (max-width: 600px) {
     grid-template: 1fr 1fr 0.2fr/ 1fr;
-    grid-template-areas: 'nav-bar' 'main-view' 'bottom-bar';
+    grid-template-areas: 'nav-bar' 'main-view' 'player-bar';
   }
 }
